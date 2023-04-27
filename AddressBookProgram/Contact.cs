@@ -18,8 +18,6 @@ namespace AddressBookProgram
         public int Phone { get; set; }
         public string Email { get; set; }
 
-        public List<Contact> contactsList = new List<Contact>();
-
         public Contact(string firstName, string lastName, string address, string city, string state, int zip, int phone, string email)
         {
             FirstName = firstName;
@@ -30,14 +28,34 @@ namespace AddressBookProgram
             Zip = zip;
             Phone = phone;
             Email = email;
-            contactsList.Add(this);
+
         }
-        public void PrintContacts()
+        public override string ToString()
         {
-            Console.WriteLine("\nContacts List:");
-            foreach (Contact contact in contactsList)
+            return string.Format("Name: {0} {1}\nAddress: {2}, {3}, {4} - {5}\nPhone Number: {6}\nEmail: {7}", FirstName, LastName, Address, City, State, Zip, Phone, Email);
+        }
+    }
+    class AddressBook
+    {
+        private List<Contact> contacts;
+
+        public AddressBook()
+        {
+            contacts = new List<Contact>();
+        }
+
+        public void AddContact(Contact contact)
+        {
+            contacts.Add(contact);
+        }
+
+        public void PrintAllContacts()
+        {
+            Console.WriteLine("Contacts in Address Book:");
+            foreach (Contact contact in contacts)
             {
-                Console.WriteLine(" First Name:{0}\n Last Name: {1}\n Address:{2}\n City:{3}\n State:{4}\n Zip:{5}\n Phone:{6}\n Email:{7}\n", "result:" + contact.FirstName, contact.LastName, contact.Address, contact.City, contact.State, contact.Zip, contact.Phone, contact.Email);
+                Console.WriteLine(contact);
+                Console.WriteLine("----------------------------");
             }
         }
     }

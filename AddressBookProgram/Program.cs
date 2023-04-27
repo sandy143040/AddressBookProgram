@@ -13,29 +13,29 @@ namespace AddressBookProgram
         {
             Console.WriteLine("Welcome to Address Book Problem");
 
-            Console.WriteLine("Enter the contact details:");
-            Console.Write("First Name: ");
+            AddressBook addressBook = new AddressBook();
+
+            Console.WriteLine("Add a new contact to Address Book:");
+            Console.Write("Enter First Name: ");
             string firstName = Console.ReadLine();
-            Console.Write("Last Name: ");
+            Console.Write("Enter Last Name: ");
             string lastName = Console.ReadLine();
-            Console.Write("Address: ");
+            Console.Write("Enter Address: ");
             string address = Console.ReadLine();
-            Console.Write("City: ");
+            Console.Write("Enter City: ");
             string city = Console.ReadLine();
-            Console.Write("State: ");
+            Console.Write("Enter State: ");
             string state = Console.ReadLine();
-            Console.Write("Zip: ");
-            int zip = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Phone: ");
+            Console.Write("Enter Zip: ");
+            int zip = int.Parse(Console.ReadLine());
+            Console.Write("Enter Phone Number: ");
             int phone = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Email: ");
+            Console.Write("Enter Email: ");
             string email = Console.ReadLine();
 
-            // Create a new contact and add it to the list
-            Contact contact = new Contact(firstName, lastName, address, city, state, zip, phone, email);
-
-            // Print out the contacts in the list
-            contact.PrintContacts();
+            Contact newContact = new Contact(firstName, lastName, address, city, state, zip, phone, email);
+            addressBook.AddContact(newContact);
+            addressBook.PrintAllContacts();
             Console.ReadLine();
         }
     }
