@@ -17,76 +17,60 @@ namespace AddressBookProgram
 
             while (true)
             {
-                Console.WriteLine("Select an option:");
+                Console.WriteLine("Choose an option:");
                 Console.WriteLine("1. Add contact");
                 Console.WriteLine("2. Edit contact");
-                Console.WriteLine("3. Exit");
+                Console.WriteLine("3. Delete contact");
+                Console.WriteLine("4. Quit");
+                Console.Write("Option: ");
 
-                int option = Convert.ToInt32(Console.ReadLine());
-              
+                int option = int.Parse(Console.ReadLine());
+
                 switch (option)
                 {
                     case 1:
-                        ContactPerson newContact = new ContactPerson();
-                        Console.WriteLine("Enter first name:");
-                        newContact.FirstName = Console.ReadLine();
-                        Console.WriteLine("Enter last name:");
-                        newContact.LastName = Console.ReadLine();
-                        Console.WriteLine("Enter address:");
-                        newContact.Address = Console.ReadLine();
-                        Console.WriteLine("Enter city:");
-                        newContact.City = Console.ReadLine();
-                        Console.WriteLine("Enter state:");
-                        newContact.State = Console.ReadLine();
-                        Console.WriteLine("Enter zip code:");
-                        newContact.Zip = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Enter phone number:");
-                        newContact.PhoneNumber = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Enter email address:");
-                        newContact.Email = Console.ReadLine();
-                        addressBook.AddContact(newContact);
+                        Console.Write("First name: ");
+                        string firstName = Console.ReadLine();
+                        Console.Write("Last name: ");
+                        string lastName = Console.ReadLine();
+                        Console.Write("Address: ");
+                        string address = Console.ReadLine();
+                        Console.Write("City: ");
+                        string city = Console.ReadLine();
+                        Console.Write("State: ");
+                        string state = Console.ReadLine();
+                        Console.Write("Zip: ");
+                        int zip = int.Parse(Console.ReadLine());
+                        Console.Write("Phone: ");
+                        int phone = int.Parse(Console.ReadLine());
+                        Console.Write("Email: ");
+                        string email = Console.ReadLine();
+                        Contact contact = new Contact(firstName, lastName, address, city, state, zip, phone, email);
+                        addressBook.AddContact(contact);
                         Console.WriteLine("Contact added.");
                         break;
                     case 2:
-                        Console.WriteLine("Enter first name of contact to edit:");
-                        string firstName = Console.ReadLine();
-                        Console.WriteLine("Enter last name of contact to edit:");
-                        string lastName = Console.ReadLine();
-                        ContactPerson existingContact = addressBook.FindContact(firstName, lastName);
-                        if (existingContact == null)
-                        {
-                            Console.WriteLine("Contact not found.");
-                            break;
-                        }
-                        ContactPerson updatedContact = new ContactPerson();
-                        Console.WriteLine("Enter new first name (leave blank to keep current value):");
-                        updatedContact.FirstName = Console.ReadLine();
-                        Console.WriteLine("Enter new last name (leave blank to keep current value):");
-                        updatedContact.LastName = Console.ReadLine();
-                        Console.WriteLine("Enter new address (leave blank to keep current value):");
-                        updatedContact.Address = Console.ReadLine();
-                        Console.WriteLine("Enter new city (leave blank to keep current value):");
-                        updatedContact.City = Console.ReadLine();
-                        Console.WriteLine("Enter new state (leave blank to keep current value):");
-                        updatedContact.State = Console.ReadLine();
-                        Console.WriteLine("Enter new zip code (leave blank to keep current value):");
-                        updatedContact.Zip = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter new phone number (leave blank to keep current value):");
-                        updatedContact.PhoneNumber = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter new email address (leave blank to keep current value):");
-                        updatedContact.Email = Console.ReadLine();
-                        addressBook.EditContact(firstName, lastName, updatedContact);
-                        Console.WriteLine("Contact updated.");
+                        Console.Write("First name: ");
+                        string editFirstName = Console.ReadLine();
+                        Console.Write("Last name: ");
+                        string editLastName = Console.ReadLine();
+                        addressBook.EditContact(editFirstName, editLastName);
                         break;
                     case 3:
+                        Console.Write("First name: ");
+                        string deleteFirstName = Console.ReadLine();
+                        Console.Write("Last name: ");
+                        string deleteLastName = Console.ReadLine();
+                        addressBook.DeleteContact(deleteFirstName, deleteLastName);
+                        break;
+                    case 4:
                         Console.WriteLine("Exiting program.");
                         return;
                     default:
-                        Console.WriteLine("Invalid option selected.");
+                        Console.WriteLine("Invalid option.");
                         break;
-                     
                 }
-                   Console.ReadLine();
+                Console.ReadLine();
             }
         }
     }
