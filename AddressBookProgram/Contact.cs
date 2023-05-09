@@ -100,6 +100,10 @@ namespace AddressBookProgram
             }
             return null;
         }
+        public List<Contact> GetAllContacts()
+        {
+            return contacts;
+        }
     }
 
 }

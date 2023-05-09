@@ -21,7 +21,8 @@ namespace AddressBookProgram
                 Console.WriteLine("1. Add contact");
                 Console.WriteLine("2. Edit contact");
                 Console.WriteLine("3. Delete contact");
-                Console.WriteLine("4. Quit");
+                Console.WriteLine("4. Add multiple contacts");
+                Console.WriteLine("5. Quit");
                 Console.Write("Option: ");
 
                 int option = int.Parse(Console.ReadLine());
@@ -48,6 +49,7 @@ namespace AddressBookProgram
                         Contact contact = new Contact(firstName, lastName, address, city, state, zip, phone, email);
                         addressBook.AddContact(contact);
                         Console.WriteLine("Contact added.");
+                        Console.WriteLine(contact.ToString());
                         break;
                     case 2:
                         Console.Write("First name: ");
@@ -64,7 +66,37 @@ namespace AddressBookProgram
                         addressBook.DeleteContact(deleteFirstName, deleteLastName);
                         break;
                     case 4:
-                        Console.WriteLine("Exiting program.");
+                        Console.Write("How many contacts do you want to add? ");
+                        int count = int.Parse(Console.ReadLine());
+
+                        for (int i = 0; i < count; i++)
+                        {
+                            Console.Write("First name: ");
+                            firstName = Console.ReadLine();
+                            Console.Write("Last name: ");
+                            lastName = Console.ReadLine();
+                            Console.Write("Address: ");
+                            address = Console.ReadLine();
+                            Console.Write("City: ");
+                            city = Console.ReadLine();
+                            Console.Write("State: ");
+                            state = Console.ReadLine();
+                            Console.Write("Zip: ");
+                            zip = int.Parse(Console.ReadLine());
+                            Console.Write("Phone: ");
+                            phone = int.Parse(Console.ReadLine());
+                            Console.Write("Email: ");
+                            email = Console.ReadLine();
+
+                            contact = new Contact(firstName, lastName, address, city, state, zip, phone, email);
+                            addressBook.AddContact(contact);
+                            Console.WriteLine("Contact added:");
+                            Console.WriteLine(contact.ToString());
+                        }
+                        break;
+
+                    case 5:
+                        Console.WriteLine("Goodbye!");
                         return;
                     default:
                         Console.WriteLine("Invalid option.");
